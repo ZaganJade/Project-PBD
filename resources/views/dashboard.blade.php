@@ -7,7 +7,8 @@
                 @auth
                     <div class="mb-4 md:mb-0">
                         <h1 class="text-xl md:text-2xl font-bold text-white mb-1">
-                            Selamat Datang di Menu Dashboard {{ auth()->user()->role->nama_role ?? 'User' }} 👋, {{ auth()->user()->username }}
+                            Selamat Datang di Menu Dashboard {{ auth()->user()->role->nama_role ?? 'User' }} 👋,
+                            {{ auth()->user()->username }}
                         </h1>
                         <p class="text-blue-100 text-sm">Kelola user dan akses sistem</p>
                     </div>
@@ -89,7 +90,7 @@
                         <p class="text-sm text-gray-600">Kelola data satuan barang.</p>
                     </a>
 
-                    {{-- === CARD: SATUAN === --}}
+                    {{-- === CARD: Kartu Stok === --}}
                     <a href="{{ route('master.kartuStock') }}"
                         class="group p-6 rounded-2xl bg-white shadow-md hover:shadow-xl border-t-4 border-amber-500
                                hover:border-amber-600 hover:-translate-y-1 transition-all duration-300">
@@ -123,7 +124,8 @@
                             <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <span class="text-2xl">🏢</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Margin Penjualan</h3>
+                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Margin Penjualan
+                            </h3>
                         </div>
                         <p class="text-sm text-gray-600">Kelola Margin Penjualan.</p>
                     </a>
@@ -135,7 +137,8 @@
                             <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <span class="text-2xl">🏢</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Pengadaan Barang</h3>
+                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Pengadaan Barang
+                            </h3>
                         </div>
                         <p class="text-sm text-gray-600">Kelola Pengadaan barangmu.</p>
                     </a>
@@ -147,7 +150,8 @@
                             <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
                                 <span class="text-2xl">🏢</span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Penerimaan Barang</h3>
+                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-700">Penerimaan Barang
+                            </h3>
                         </div>
                         <p class="text-sm text-gray-600">Data Penerimaan.</p>
                     </a>
@@ -164,8 +168,35 @@
                         <p class="text-sm text-gray-600">Kelola Penerimaan barangmu.</p>
                     </a>
 
+                    {{-- === CARD: Penjualan === --}}
+                    <a href="{{ route('transaction.FormPenjualan') }}"
+                        class="group p-6 rounded-2xl bg-white shadow-md hover:shadow-xl border-t-4 border-emerald-500
+                hover:border-emerald-600 hover:-translate-y-1 transition-all duration-300">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+                                <span class="text-2xl">📦</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-emerald-700">Form Penjualan</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">Kelola Penjualan.</p>
+                    </a>
+
+                    {{-- === CARD: Penjualan === --}}
+                    <a href="{{ route('transaction.Penjualan') }}"
+                        class="group p-6 rounded-2xl bg-white shadow-md hover:shadow-xl border-t-4 border-emerald-500
+                hover:border-emerald-600 hover:-translate-y-1 transition-all duration-300">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+                                <span class="text-2xl">📦</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-emerald-700">Penjualan</h3>
+                        </div>
+                        <p class="text-sm text-gray-600">Kelola Penjualan.</p>
+                    </a>
+
                 </div>
             </div>
         </main>
     </div>
+
 </x-layouts.app>

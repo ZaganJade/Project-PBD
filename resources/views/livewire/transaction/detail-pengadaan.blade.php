@@ -301,7 +301,7 @@
                 </select>
 
                 <!-- Nama Satuan -->
-                <div>
+                <div wire:poll 1ms>
                     <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nama Satuan</label>
                     <input type="text" wire:model="nama_satuan"
                         class="w-full px-3 py-2 bg-gray-100 border-2 border-gray-200 rounded-xl"

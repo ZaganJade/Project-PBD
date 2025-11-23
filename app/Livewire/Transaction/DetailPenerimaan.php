@@ -19,7 +19,6 @@ class DetailPenerimaan extends Component
 
     public function loadData()
     {
-        // Header dari views_penerimaan
         $this->header = DB::selectOne("
             SELECT *
             FROM views_penerimaan
@@ -27,7 +26,6 @@ class DetailPenerimaan extends Component
             LIMIT 1
         ", [$this->idpenerimaan]);
 
-        // Detail dari views_detail_penerimaan
         $this->details = DB::select("
             SELECT *
             FROM views_detail_penerimaan

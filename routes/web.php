@@ -16,6 +16,10 @@ use App\Livewire\Transaction\DetailPengadaan;
 use App\Livewire\Transaction\Penerimaan;
 use App\Livewire\Transaction\DetailPenerimaan;
 use App\Livewire\Transaction\FormPenerimaan;
+use App\Livewire\Transaction\Penjualan;
+use App\Livewire\Transaction\FormPenjualan;
+use App\Livewire\Transaction\DetailPenjualan;
+
 
 
 Route::get('/', function() {
@@ -61,6 +65,9 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
         Route::get('Penerimaan', Penerimaan::class)->name('transaction.Penerimaan');
         Route::get('penerimaan/{idpenerimaan}/detail', DetailPenerimaan::class)->name('transaction.penerimaan.detail');
         route::get('FormPenerimaan', FormPenerimaan::class)->name('transaction.FormPenerimaan');
+        route::get('FormPenjualan', FormPenjualan::class)->name('transaction.FormPenjualan');
+        route::get('Penjualan', Penjualan::class)->name('transaction.Penjualan');
+        Route::get('penjualan/{idpenjualan}/detail', DetailPenjualan::class)->name('transaction.penjualan.detail');
     });
 
 });

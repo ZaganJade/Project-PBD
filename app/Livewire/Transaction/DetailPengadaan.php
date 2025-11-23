@@ -39,6 +39,7 @@ class DetailPengadaan extends Component
             SELECT b.*, s.nama_satuan
             FROM barang b
             JOIN satuan s ON s.idsatuan = b.idsatuan
+            where b.status = 1
             ORDER BY b.nama ASC
         ");
     }

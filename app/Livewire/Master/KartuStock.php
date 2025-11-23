@@ -7,39 +7,59 @@ use Illuminate\Support\Facades\DB;
 
 class KartuStock extends Component
 {
-
-    public $searchId = '';
     public $searchNama = '';
+    public $rekap = [];
+    public $stokAkhir = 0;
 
-    public function resetFilter()
+    public $detailBarangId = null;
+    public $detailLog = [];
+
+    public function mount()
     {
-        $this->searchId = '';
-        $this->searchNama = '';
+        $this->loadRekap();
+    }
+
+    public function updatedSearchNama()
+    {
+        $this->loadRekap();
+    }
+
+    public function loadRekap()
+    {
+        $this->rekap = DB::select("
+            SELECT *
+            FROM views_kartu_stock_rekap
+            WHERE nama_barang LIKE ?
+            ORDER BY idbarang
+        ", [
+            '%' . $this->searchNama . '%'
+        ]);
+    }
+
+    public function lihatDetail($idbarang)
+    {
+        $this->detailBarangId = $idbarang;
+        $this->detailLog = DB::select("
+        SELECT *
+        FROM views_kartu_stock
+        WHERE idbarang = ?
+        ORDER BY tanggal DESC
+    ", [$idbarang]);
+
+        $this->stokAkhir = count($this->detailLog) > 0
+            ? $this->detailLog[0]->stok_akhir
+            : 0;
+    }
+
+
+    public function tutupDetail()
+    {
+        $this->detailBarangId = null;
+        $this->detailLog = [];
     }
 
     public function render()
     {
-
-        $KartuStock = DB::select("SELECT * FROM views_kartu_stock");
-        return view('livewire.master.kartu-stock', [
-            'kartuStock' => $KartuStock
-        ]);
-
-        
+        return view('livewire.master.kartu-stock');
     }
-
-    // public function searchByNama()
-    // {
-    //     if ($this->searchNama === '') {
-    //         return;
-    //     }
-
-    //     $nama = "%{$this->searchNama}%";
-
-    //     $this->kartuStock = DB::select("
-    //         SELECT *
-    //         FROM views_kartu_stock
-    //         WHERE nama_barang LIKE ?
-    //     ", [$nama]);
-    // }
 }
