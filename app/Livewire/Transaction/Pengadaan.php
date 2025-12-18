@@ -51,9 +51,9 @@ class Pengadaan extends Component
         try {
             DB::delete("DELETE FROM pengadaan where idpengadaan = ?", [$id]);
             db::delete("CALL `Global_Reset_Auto_Increment`()");
-            session()->flash('ok', 'Barang berhasil dihapus!');
+            session()->flash('ok', 'pengadaan berhasil dihapus!');
         } catch (\Throwable $e) {
-            session()->flash('err', 'Gagal menghapus barang: ' . $e->getMessage());
+            session()->flash('err', 'Gagal menghapus pengadaan: ' . $e->getMessage());
         }
         $this->loadData();
     }

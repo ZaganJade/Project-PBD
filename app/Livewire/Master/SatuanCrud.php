@@ -15,7 +15,6 @@ class SatuanCrud extends Component
 
     public function render()
     {
-        // Ambil semua data satuan
         // $data = DB::select('SELECT * FROM satuan ORDER BY idsatuan ASC');
 
         $data = db::select("select * from view_satuan");
@@ -39,8 +38,6 @@ class SatuanCrud extends Component
     public function store()
     {
         $this->validate();
-
-        // Tambah data baru
         DB::insert('INSERT INTO satuan (nama_satuan, status) VALUES (?, ?)', [
             $this->nama_satuan,
             $this->status
@@ -54,7 +51,6 @@ class SatuanCrud extends Component
 
     public function edit($id)
     {
-        // Ambil data berdasarkan id
         $m = DB::select('SELECT * FROM satuan WHERE idsatuan = ? LIMIT 1', [$id]);
 
         if ($m) {
@@ -69,8 +65,6 @@ class SatuanCrud extends Component
     public function update()
     {
         $this->validate();
-
-        // Update data
         DB::update('UPDATE satuan SET nama_satuan = ?, status = ? WHERE idsatuan = ?', [
             $this->nama_satuan,
             $this->status,

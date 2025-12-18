@@ -10,15 +10,18 @@ class VendorCrud extends Component
 
     protected $rules = [
         'nama_vendor' => 'required|string|max:100',
-        'badan_hukum' => 'required|in:P,S,U', // contoh: P=PT, S=CV/UD, U=UMKM, dsb.
+        'badan_hukum' => 'required|in:P,S,U',
         'status'      => 'required|in:0,1'
     ];
 
     public function render()
     {
-        // Ambil semua data vendor
-        $data = DB::select('SELECT * FROM vendor ORDER BY idvendor ASC');
-        return view('livewire.master.vendor-crud', compact('data'));
+        $semuaData = DB::select('SELECT * FROM semua_vendor');
+        $DataAktif = DB::select('SELECT * FROM vendor_aktif');
+        return view('livewire.master.vendor-crud', [
+            'semuaData' => $semuaData,
+            'DataAktif' => $DataAktif
+        ]);
     }
 
     public function resetForm()
@@ -35,8 +38,6 @@ class VendorCrud extends Component
     public function store()
     {
         $this->validate();
-
-        // Insert data baru
         DB::insert('INSERT INTO vendor (nama_vendor, badan_hukum, status) VALUES (?, ?, ?)', [
             $this->nama_vendor,
             $this->badan_hukum,
@@ -50,7 +51,6 @@ class VendorCrud extends Component
 
     public function edit($id)
     {
-        // Ambil data berdasarkan ID
         $m = DB::select('SELECT * FROM vendor WHERE idvendor = ? LIMIT 1', [$id]);
 
         if ($m) {
@@ -66,8 +66,6 @@ class VendorCrud extends Component
     public function update()
     {
         $this->validate();
-
-        // Update data vendor
         DB::update('UPDATE vendor SET nama_vendor = ?, badan_hukum = ?, status = ? WHERE idvendor = ?', [
             $this->nama_vendor,
             $this->badan_hukum,
@@ -83,7 +81,6 @@ class VendorCrud extends Component
     public function delete($id)
     {
         try {
-            // Hapus data vendor
             DB::delete('DELETE FROM vendor WHERE idvendor = ?', [$id]);
             db::delete("CALL `Global_Reset_Auto_Increment`()");
             session()->flash('ok', 'Vendor dihapus');

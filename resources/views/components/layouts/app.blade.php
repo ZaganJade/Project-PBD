@@ -36,10 +36,8 @@
 
     {{-- 🔻 Footer sticky di bawah --}}
     <footer class="bg-blue-900 text-blue-100 text-center py-4 rounded-t-2xl shadow-inner">
-        <p class="text-sm">&copy; {{ date('Y') }} RSHP Universitas Airlangga. All rights reserved.</p>
+        <p class="text-sm">&copy; {{ date('Y') }} Marketplace</p>
     </footer>
-
-
     @livewireScripts
 </body>
 
